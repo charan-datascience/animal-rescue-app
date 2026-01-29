@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="hero-background"></div>
+    <div class="hero-content container">
+        <div class="hero-text">
+            <h1 class="hero-title">
+                <span class="title-line">Every Life</span>
+                <span class="title-line">Deserves a Chance</span>
+            </h1>
+            <p class="hero-subtitle">Join our community of compassionate rescuers. Report injured animals, volunteer your time, or contribute to their care.</p>
+        </div>
+        
+        <div class="hero-actions">
+            <a href="{{ url_for('report_animal') }}" class="btn btn-primary btn-large">
+                <span class="btn-icon">📸</span>
+                <span class="btn-text">Report Animal in Distress</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<section class="action-cards">
+    <div class="container">
+        <div class="cards-grid">
+            <div class="action-card card-volunteer">
+                <div class="card-header">
+                    <div class="card-icon">🤝</div>
+                    <h2 class="card-title">Become a Helper</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">Register as an NGO, veterinarian, or individual volunteer. Receive alerts about animals in need near your location.</p>
+                    <ul class="card-benefits">
+                        <li>Get instant notifications</li>
+                        <li>Help animals in your area</li>
+                        <li>Make a real difference</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('register') }}" class="btn btn-secondary">
+                        <span>Register to Help</span>
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="action-card card-donate">
+                <div class="card-header">
+                    <div class="card-icon">💝</div>
+                    <h2 class="card-title">Support Our Mission</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">Your donations fund medical care, food, and shelter for rescued animals. Every contribution saves lives.</p>
+                    <ul class="card-benefits">
+                        <li>100% goes to animal care</li>
+                        <li>Tax-deductible donations</li>
+                        <li>Track your impact</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('donate') }}" class="btn btn-secondary">
+                        <span>Donate Now</span>
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Animals Rescued</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Active Volunteers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Emergency Response</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="how-it-works">
+    <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps-grid">
+            <div class="step-item">
+                <div class="step-number">01</div>
+                <div class="step-icon">📍</div>
+                <h3 class="step-title">Report</h3>
+                <p class="step-description">Take a photo of the animal in distress. Our system automatically captures the location.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">02</div>
+                <div class="step-icon">🔔</div>
+                <h3 class="step-title">Alert</h3>
+                <p class="step-description">Nearby registered helpers receive instant email notifications about the rescue request.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">03</div>
+                <div class="step-icon">🚑</div>
+                <h3 class="step-title">Rescue</h3>
+                <p class="step-description">Trained volunteers or NGOs respond quickly to provide medical care and shelter.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">04</div>
+                <div class="step-icon">❤️</div>
+                <h3 class="step-title">Recovery</h3>
+                <p class="step-description">Animals receive treatment, rehabilitation, and a chance at a better life.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

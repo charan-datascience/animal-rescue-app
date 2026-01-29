@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Report Animal{% endblock %}
+
+{% block content %}
+<div class="report-page">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Report Animal in Distress</h1>
+            <p class="page-subtitle">Your quick action can save a life. Capture a photo and we'll alert nearby rescuers immediately.</p>
+        </div>
+
+        <div class="report-container">
+            <div class="camera-section">
+                <div class="camera-container" id="cameraContainer">
+                    <video id="video" autoplay playsinline></video>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                    <div id="capturedImage" class="captured-image" style="display: none;">
+                        <img id="photo" alt="Captured photo">
+                        <button type="button" class="btn btn-retake" id="retakeBtn">
+                            <span>↺ Retake Photo</span>
+                        </button>
+                    </div>
+                    <div class="camera-overlay">
+                        <div class="location-badge" id="locationBadge">
+                            <span class="badge-icon">📍</span>
+                            <span class="badge-text">Detecting location...</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="camera-controls">
+                    <button type="button" class="btn btn-capture" id="captureBtn">
+                        <span class="capture-icon">📷</span>
+                        <span>Capture Photo</span>
+                    </button>
+                    <input type="file" id="fileInput" accept="image/*" capture="environment" style="display: none;">
+                    <button type="button" class="btn btn-upload" id="uploadBtn">
+                        <span>📁 Upload from Gallery</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <form id="reportForm" method="POST" enctype="multipart/form-data" action="{{ url_for('report_animal') }}">
+                    <input type="hidden" id="latitude" name="latitude" required>
+                    <input type="hidden" id="longitude" name="longitude" required>
+                    <input type="hidden" id="imageData" name="image_data">
+                    
+                    <div class="form-group">
+                        <label for="location_address" class="form-label">
+                            <span class="label-icon">📍</span>
+                            <span>Location Address</span>
+                        </label>
+                        <input type="text" 
+                               id="location_address" 
+                               name="location_address" 
+                               class="form-input" 
+                               placeholder="Detected automatically..."
+                               readonly>
+                        <small class="form-help">Location is detected automatically from your device</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description" class="form-label">
+                            <span class="label-icon">📝</span>
+                            <span>Description (Optional)</span>
+                        </label>
+                        <textarea id="description" 
+                                  name="description" 
+                                  class="form-textarea" 
+                                  rows="4"
+                                  placeholder="Describe the animal's condition, injuries, or any urgent details..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact" class="form-label">
+                            <span class="label-icon">📞</span>
+                            <span>Your Contact Number (Optional)</span>
+                        </label>
+                        <input type="tel" 
+                               id="contact" 
+                               name="contact" 
+                               class="form-input" 
+                               placeholder="+1 234 567 8900">
+                        <small class="form-help">We may contact you for additional information</small>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large" id="submitBtn" disabled>
+                            <span class="btn-icon">🚨</span>
+                            <span class="btn-text">Submit Report & Alert Helpers</span>
+                        </button>
+                    </div>
+
+                    <div class="form-info">
+                        <p>🔒 Your information is secure and will only be used for rescue coordination.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/camera.js') }}"></script>
+{% endblock %}

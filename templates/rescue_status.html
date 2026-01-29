@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}Rescue Status{% endblock %}
+
+{% block content %}
+<div class="status-page">
+    <div class="container">
+        <div class="status-header">
+            <div class="status-icon-container">
+                <div class="status-icon status-icon-active">🚑</div>
+            </div>
+            <h1 class="status-title">Help is on the Way!</h1>
+            <p class="status-subtitle">Report #{{ report.id }} has been successfully submitted</p>
+        </div>
+
+        <div class="status-container">
+            <div class="status-timeline">
+                <div class="timeline-item timeline-item-complete">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Report Received</h3>
+                        <p class="timeline-time">{{ report.created_at.strftime('%B %d, %Y at %I:%M %p') }}</p>
+                        <p class="timeline-description">Your report has been successfully submitted to our system.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item {% if helper %}timeline-item-complete{% else %}timeline-item-pending{% endif %}">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Helpers Notified</h3>
+                        {% if helper %}
+                            <p class="timeline-time">Just now</p>
+                            <p class="timeline-description">
+                                Nearby registered helpers and NGOs have been notified via email.
+                                <strong>{{ helper.name }}</strong> ({{ helper.helper_type }}) has been assigned to this case.
+                            </p>
+                        {% else %}
+                            <p class="timeline-description">Searching for available helpers in your area...</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="timeline-item timeline-item-pending">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Rescue in Progress</h3>
+                        <p class="timeline-description">A rescue team will arrive at the location as soon as possible.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item timeline-item-pending">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Animal Safe</h3>
+                        <p class="timeline-description">The animal will receive medical care and shelter.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="report-details-card">
+                <h2 class="card-title">Report Details</h2>
+                
+                <div class="detail-item">
+                    <span class="detail-label">📍 Location</span>
+                    <span class="detail-value">
+                        {% if report.location_address %}
+                            {{ report.location_address }}
+                        {% else %}
+                            {{ report.latitude }}, {{ report.longitude }}
+                        {% endif %}
+                    </span>
+                </div>
+
+                <div class="detail-item">
+                    <span class="detail-label">🕐 Reported At</span>
+                    <span class="detail-value">{{ report.created_at.strftime('%B %d, %Y at %I:%M %p') }}</span>
+                </div>
+
+                <div class="detail-item">
+                    <span class="detail-label">📊 Status</span>
+                    <span class="detail-value">
+                        <span class="status-badge status-badge-{{ report.status }}">
+                            {{ report.status.upper() }}
+                        </span>
+                    </span>
+                </div>
+
+                {% if helper %}
+                <div class="detail-item">
+                    <span class="detail-label">🤝 Assigned Helper</span>
+                    <span class="detail-value">{{ helper.name }} ({{ helper.helper_type }})</span>
+                </div>
+                {% endif %}
+
+                {% if report.description %}
+                <div class="detail-item detail-item-full">
+                    <span class="detail-label">📝 Description</span>
+                    <span class="detail-value">{{ report.description }}</span>
+                </div>
+                {% endif %}
+
+                <div class="detail-item detail-item-full">
+                    <span class="detail-label">🗺️ View on Map</span>
+                    <a href="https://www.google.com/maps?q={{ report.latitude }},{{ report.longitude }}" 
+                       target="_blank" 
+                       class="btn btn-map">
+                        Open in Google Maps →
+                    </a>
+                </div>
+
+                {% if report.image_path %}
+                <div class="detail-item detail-item-full">
+                    <span class="detail-label">📸 Reported Image</span>
+                    <div class="report-image">
+                        <img src="{{ url_for('static', filename='uploads/' + report.image_path) }}" 
+                             alt="Reported animal">
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="status-actions">
+            <a href="{{ url_for('home') }}" class="btn btn-secondary">← Back to Home</a>
+            <a href="{{ url_for('donate') }}" class="btn btn-primary">Support This Rescue 💝</a>
+        </div>
+
+        <div class="info-box">
+            <h3>What happens next?</h3>
+            <ul>
+                <li>📧 Registered helpers near the location have received email notifications</li>
+                <li>🚗 The closest available rescuer will respond to the location</li>
+                <li>🏥 The animal will receive immediate medical assessment</li>
+                <li>💚 You can support recovery efforts through donations</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

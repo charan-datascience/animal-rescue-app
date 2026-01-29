@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block title %}Donate{% endblock %}
+
+{% block content %}
+<div class="donate-page">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Support Animal Rescue</h1>
+            <p class="page-subtitle">Your generosity saves lives. Every donation helps provide medical care, food, and shelter to animals in need.</p>
+        </div>
+
+        <div class="donate-stats">
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-content">
+                    <div class="stat-number">${{ "%.2f"|format(total_donations) }}</div>
+                    <div class="stat-label">Total Raised</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🐾</div>
+                <div class="stat-content">
+                    <div class="stat-number">{{ (total_donations / 50) | int }}</div>
+                    <div class="stat-label">Animals Helped</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">❤️</div>
+                <div class="stat-content">
+                    <div class="stat-number">{{ recent_donations|length }}+</div>
+                    <div class="stat-label">Recent Donors</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="donate-container">
+            <div class="donation-form-container">
+                <form id="donateForm" method="POST" action="{{ url_for('donate') }}" class="donate-form">
+                    <h2 class="form-title">Make a Donation</h2>
+
+                    <div class="form-group">
+                        <label for="donor_name" class="form-label">
+                            <span class="label-icon">👤</span>
+                            <span>Your Name</span>
+                            <span class="required">*</span>
+                        </label>
+                        <input type="text" 
+                               id="donor_name" 
+                               name="donor_name" 
+                               class="form-input" 
+                               placeholder="Enter your name"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donor_email" class="form-label">
+                            <span class="label-icon">📧</span>
+                            <span>Email Address</span>
+                            <span class="required">*</span>
+                        </label>
+                        <input type="email" 
+                               id="donor_email" 
+                               name="donor_email" 
+                               class="form-input" 
+                               placeholder="your.email@example.com"
+                               required>
+                        <small class="form-help">We'll send you a donation receipt</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <span class="label-icon">💵</span>
+                            <span>Donation Amount</span>
+                            <span class="required">*</span>
+                        </label>
+                        <div class="amount-options">
+                            <button type="button" class="amount-btn" data-amount="10">$10</button>
+                            <button type="button" class="amount-btn" data-amount="25">$25</button>
+                            <button type="button" class="amount-btn" data-amount="50">$50</button>
+                            <button type="button" class="amount-btn" data-amount="100">$100</button>
+                            <button type="button" class="amount-btn" data-amount="250">$250</button>
+                        </div>
+                        <div class="custom-amount">
+                            <span class="currency-symbol">$</span>
+                            <input type="number" 
+                                   id="amount" 
+                                   name="amount" 
+                                   class="form-input amount-input" 
+                                   placeholder="Enter custom amount"
+                                   min="1"
+                                   step="0.01"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="impact-message" id="impactMessage">
+                        <span class="impact-icon">🐕</span>
+                        <span class="impact-text"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">
+                            <span class="label-icon">💬</span>
+                            <span>Message (Optional)</span>
+                        </label>
+                        <textarea id="message" 
+                                  name="message" 
+                                  class="form-textarea" 
+                                  rows="3"
+                                  placeholder="Leave a message of support..."></textarea>
+                    </div>
+
+                    <div class="payment-info">
+                        <h3>Payment Method</h3>
+                        <p>💳 This is a demo application. In production, integrate with payment processors like:</p>
+                        <div class="payment-methods">
+                            <span class="payment-badge">Stripe</span>
+                            <span class="payment-badge">PayPal</span>
+                            <span class="payment-badge">Razorpay</span>
+                            <span class="payment-badge">Square</span>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <span class="btn-icon">💝</span>
+                            <span class="btn-text">Complete Donation</span>
+                        </button>
+                    </div>
+
+                    <div class="form-info">
+                        <p>🔒 Your donation is secure and tax-deductible.</p>
+                        <p>📧 You will receive a receipt via email.</p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="donation-info">
+                <div class="info-card">
+                    <h2>Where Your Money Goes</h2>
+                    <div class="allocation-chart">
+                        <div class="allocation-item">
+                            <div class="allocation-bar" style="width: 60%;">
+                                <span class="allocation-label">Medical Care</span>
+                                <span class="allocation-percent">60%</span>
+                            </div>
+                        </div>
+                        <div class="allocation-item">
+                            <div class="allocation-bar" style="width: 25%;">
+                                <span class="allocation-label">Food & Shelter</span>
+                                <span class="allocation-percent">25%</span>
+                            </div>
+                        </div>
+                        <div class="allocation-item">
+                            <div class="allocation-bar" style="width: 10%;">
+                                <span class="allocation-label">Transportation</span>
+                                <span class="allocation-percent">10%</span>
+                            </div>
+                        </div>
+                        <div class="allocation-item">
+                            <div class="allocation-bar" style="width: 5%;">
+                                <span class="allocation-label">Operations</span>
+                                <span class="allocation-percent">5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h2>Impact Calculator</h2>
+                    <ul class="impact-list">
+                        <li><strong>$10</strong> feeds one animal for a week</li>
+                        <li><strong>$25</strong> provides basic medical checkup</li>
+                        <li><strong>$50</strong> covers emergency treatment</li>
+                        <li><strong>$100</strong> supports one rescue operation</li>
+                        <li><strong>$250</strong> provides comprehensive care for recovery</li>
+                    </ul>
+                </div>
+
+                {% if recent_donations %}
+                <div class="info-card">
+                    <h2>Recent Donors</h2>
+                    <div class="recent-donors">
+                        {% for donation in recent_donations[:5] %}
+                        <div class="donor-item">
+                            <div class="donor-avatar">{{ donation.donor_name[0].upper() }}</div>
+                            <div class="donor-info">
+                                <div class="donor-name">{{ donation.donor_name }}</div>
+                                <div class="donor-amount">${{ "%.2f"|format(donation.amount) }}</div>
+                            </div>
+                            <div class="donor-time">{{ donation.created_at.strftime('%b %d') }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/donate.js') }}"></script>
+{% endblock %}

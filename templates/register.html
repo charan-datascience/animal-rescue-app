@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% block title %}Register as Helper{% endblock %}
+
+{% block content %}
+<div class="register-page">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Become a Rescue Hero</h1>
+            <p class="page-subtitle">Join our network of compassionate helpers. Receive alerts about animals in need near your location.</p>
+        </div>
+
+        <div class="register-container">
+            <div class="register-info">
+                <div class="info-card">
+                    <h2>Why Register?</h2>
+                    <ul class="benefits-list">
+                        <li>
+                            <span class="benefit-icon">🔔</span>
+                            <div>
+                                <strong>Instant Alerts</strong>
+                                <p>Get email notifications about rescue requests near you</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">📍</span>
+                            <div>
+                                <strong>Location-Based</strong>
+                                <p>Only receive alerts for animals within your service area</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">🤝</span>
+                            <div>
+                                <strong>Make an Impact</strong>
+                                <p>Be part of a life-saving community</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">💼</span>
+                            <div>
+                                <strong>For Everyone</strong>
+                                <p>NGOs, veterinarians, and individual volunteers welcome</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h2>Who Can Register?</h2>
+                    <div class="helper-types">
+                        <div class="helper-type">
+                            <span class="type-icon">🏢</span>
+                            <strong>NGOs</strong>
+                            <p>Animal welfare organizations</p>
+                        </div>
+                        <div class="helper-type">
+                            <span class="type-icon">⚕️</span>
+                            <strong>Veterinarians</strong>
+                            <p>Licensed animal doctors</p>
+                        </div>
+                        <div class="helper-type">
+                            <span class="type-icon">👤</span>
+                            <strong>Individuals</strong>
+                            <p>Passionate volunteers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="register-form-container">
+                <form id="registerForm" method="POST" action="{{ url_for('register') }}" class="register-form">
+                    <h2 class="form-title">Registration Form</h2>
+
+                    <div class="form-group">
+                        <label for="name" class="form-label">
+                            <span class="label-icon">👤</span>
+                            <span>Full Name / Organization Name</span>
+                            <span class="required">*</span>
+                        </label>
+                        <input type="text" 
+                               id="name" 
+                               name="name" 
+                               class="form-input" 
+                               placeholder="Enter your name or organization name"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="helper_type" class="form-label">
+                            <span class="label-icon">🏷️</span>
+                            <span>I am registering as</span>
+                            <span class="required">*</span>
+                        </label>
+                        <select id="helper_type" name="helper_type" class="form-select" required>
+                            <option value="">Select your role</option>
+                            <option value="NGO">NGO / Animal Welfare Organization</option>
+                            <option value="Veterinarian">Veterinarian / Animal Doctor</option>
+                            <option value="Individual">Individual Volunteer</option>
+                            <option value="Rescue Team">Professional Rescue Team</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age" class="form-label">
+                                <span class="label-icon">🎂</span>
+                                <span>Age</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="number" 
+                                   id="age" 
+                                   name="age" 
+                                   class="form-input" 
+                                   placeholder="18"
+                                   min="18"
+                                   max="100"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact" class="form-label">
+                                <span class="label-icon">📞</span>
+                                <span>Contact Number</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="tel" 
+                                   id="contact" 
+                                   name="contact" 
+                                   class="form-input" 
+                                   placeholder="+1 234 567 8900"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">
+                            <span class="label-icon">📧</span>
+                            <span>Email Address</span>
+                            <span class="required">*</span>
+                        </label>
+                        <input type="email" 
+                               id="email" 
+                               name="email" 
+                               class="form-input" 
+                               placeholder="your.email@example.com"
+                               required>
+                        <small class="form-help">You'll receive rescue alerts at this email</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location" class="form-label">
+                            <span class="label-icon">📍</span>
+                            <span>Address / Service Area</span>
+                            <span class="required">*</span>
+                        </label>
+                        <input type="text" 
+                               id="location" 
+                               name="location" 
+                               class="form-input" 
+                               placeholder="City, State, Country"
+                               required>
+                        <small class="form-help">Enter your primary location or service area</small>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" id="detectLocationBtn">
+                            <span class="btn-icon">📍</span>
+                            <span>Detect My Location</span>
+                        </button>
+                        <input type="hidden" id="latitude" name="latitude">
+                        <input type="hidden" id="longitude" name="longitude">
+                        <small class="form-help location-status" id="locationStatus">
+                            Click above to automatically detect your coordinates
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" required>
+                            <span>I agree to respond to rescue alerts and provide assistance to animals in need</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" required>
+                            <span>I understand that I will receive email notifications about nearby rescue requests</span>
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <span class="btn-icon">✓</span>
+                            <span class="btn-text">Complete Registration</span>
+                        </button>
+                    </div>
+
+                    <div class="form-info">
+                        <p>🔒 Your information is secure and will only be used for rescue coordination purposes.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/register.js') }}"></script>
+{% endblock %}
