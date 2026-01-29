@@ -274,11 +274,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ##  Contact
 
 For questions, suggestions, or support:
-- Email: rescue@animalrescue.org
+- Email: charancharan3604@gmail.com
 - GitHub Issues: [Create an issue](https://github.com/yourusername/animal-rescue-app/issues)
 
 ---
 
-Made with ❤️ for animals in need
+Made with  for animals in need
 
 **Remember: Every life matters. Together, we can make a difference!** 🐾
