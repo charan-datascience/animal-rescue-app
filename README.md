@@ -1,4 +1,4 @@
-# 🐾 Animal Rescue Application
+#  Animal Rescue Application
 
 A comprehensive web application for reporting and rescuing street animals in distress. Built with Flask, this application connects people who find injured animals with nearby volunteers, NGOs, and veterinarians who can help.
 
@@ -7,7 +7,7 @@ A comprehensive web application for reporting and rescuing street animals in dis
 ![Python](https://img.shields.io/badge/Python-3.8+-blue)
 ![Flask](https://img.shields.io/badge/Flask-3.0-green)
 
-## ✨ Features
+##  Features
 
 ### 1. **Home Page**
 - Beautiful, compassionate design
@@ -15,7 +15,7 @@ A comprehensive web application for reporting and rescuing street animals in dis
 - Information about the rescue process
 - Statistics dashboard
 
-### 2. **Report Animal** 🚨
+### 2. **Report Animal** 
 - Camera integration with live preview
 - Automatic geolocation detection
 - Upload from gallery option
@@ -23,27 +23,27 @@ A comprehensive web application for reporting and rescuing street animals in dis
 - Image capture with location tagging
 - Email notifications to nearby helpers
 
-### 3. **Rescue Status** 📊
+### 3. **Rescue Status** 
 - Real-time status tracking
 - Timeline visualization
 - Assigned helper information
 - Google Maps integration
 - Report details display
 
-### 4. **Registration** 🤝
+### 4. **Registration** 
 - Multi-type registration (NGO, Vet, Individual)
 - Location-based helper matching
 - Automatic coordinate detection
 - Email notification system
 
-### 5. **Donation** 💝
+### 5. **Donation** 
 - Flexible donation amounts
 - Impact calculator
 - Recent donor showcase
 - Transparent fund allocation
 - Multiple payment gateway support (demo)
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -92,7 +92,7 @@ A comprehensive web application for reporting and rescuing street animals in dis
 6. **Open your browser**
    Navigate to `http://localhost:5000`
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 animal-rescue-app/
@@ -195,7 +195,7 @@ For production deployment:
    gunicorn -w 4 -b 0.0.0.0:8000 app:app
    ```
 
-## 🌐 API Endpoints
+##  API Endpoints
 
 - `GET /` - Home page
 - `GET/POST /report` - Report animal page
@@ -205,17 +205,17 @@ For production deployment:
 - `GET /api/helpers` - Get all helpers (JSON)
 - `GET /api/reports` - Get all reports (JSON)
 
-## 🔐 Security Features
+##  Security Features
 
-- ✅ CSRF protection via Flask-WTF
-- ✅ Secure file upload handling
-- ✅ SQL injection prevention (SQLAlchemy ORM)
-- ✅ XSS protection (Jinja2 auto-escaping)
-- ✅ Location data validation
-- ✅ File size limits
-- ✅ Email validation
+-  CSRF protection via Flask-WTF
+-  Secure file upload handling
+-  SQL injection prevention (SQLAlchemy ORM)
+-  XSS protection (Jinja2 auto-escaping)
+-  Location data validation
+-  File size limits
+-  Email validation
 
-## 🎨 Design Features
+##  Design Features
 
 - Responsive design for mobile and desktop
 - Compassionate color palette
@@ -225,7 +225,7 @@ For production deployment:
 - Interactive feedback
 - Professional typography
 
-## 📱 Browser Support
+##  Browser Support
 
 - Chrome/Edge (latest)
 - Firefox (latest)
@@ -234,10 +234,10 @@ For production deployment:
 
 ### Required Permissions
 
-- 📷 Camera access (for photo capture)
-- 📍 Location access (for geolocation)
+-  Camera access (for photo capture)
+-  Location access (for geolocation)
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -247,7 +247,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 Future Enhancements
+##  Future Enhancements
 
 - [ ] Real-time chat between reporters and helpers
 - [ ] Mobile app (iOS/Android)
@@ -260,18 +260,18 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - [ ] Volunteer training modules
 - [ ] AI-powered injury detection
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - OpenStreetMap Nominatim for reverse geocoding
 - Flask and SQLAlchemy communities
 - All animal welfare organizations worldwide
 - Volunteers who dedicate their time to rescue animals
 
-## 📞 Contact
+##  Contact
 
 For questions, suggestions, or support:
 - Email: rescue@animalrescue.org
